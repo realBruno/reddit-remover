@@ -1,19 +1,23 @@
-const domain = "reddit.com";
+const domains = [];
 
-function hide_reddit() {
-
+function hide() {
     const results = document.querySelectorAll("div.g");
-
     results.forEach(result => {
-        const link = result.querySelector('a');
-        if (!link) return;
+        const link = result.querySelector("a");
 
-        const shouldHide = link.href.toLowerCase().includes(domain);
+        if (!link) return; // se não houver nenhum link na página, encerrar
 
-        if (shouldHide)
-            result.style.display = 'none';
+        for (let i = 0; i < domains.length; i++) {
+            const shouldHide = link.href.toLowerCase().includes(domains[i]);
+            if (shouldHide)
+                result.style.display = 'none';
+        }
     });
 }
 
-hide_reddit();
-
+$(function () { // obtém as entradas do usuário e as envia para o array (jQuery)
+    $('#site').keyup(function () {
+        domains.push($('#site').val());
+        hide();
+    });
+});

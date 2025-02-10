@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "RedditRemover",
+    "name": "Ungoogleit",
     "version": "1.0.0",
     "content_scripts": [
         {
@@ -8,11 +8,16 @@
                 "<all_urls>"
             ],
             "js": [
+                "jquery-3.7.1.min.js",
                 "Content.js"
             ]
         }
     ],
     "icons": {
         "128": "./icon.png"
+    },
+
+    "action": {
+        "default_popup": "popup.html"
     }
 }
